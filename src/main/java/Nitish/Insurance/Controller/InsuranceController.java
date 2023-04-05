@@ -43,6 +43,7 @@ public class InsuranceController {
     @DeleteMapping("/policies/{id}")
     public ResponseEntity<String> deleteById(@PathVariable int id){
         return new ResponseEntity<>(insurancePolicyService.deletePolicy(id),HttpStatus.ACCEPTED);
+
     }
 
     @PutMapping("/policies/{id}")

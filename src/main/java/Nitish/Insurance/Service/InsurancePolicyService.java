@@ -23,7 +23,7 @@ public class InsurancePolicyService {
     @Autowired
     ClientRepository clientRepository;
 
-    public String addPolicy(PolicyDTO policyDTO){
+    public String addPolicy(PolicyDTO policyDTO)throws Exception{
         Client client=clientRepository.findById(policyDTO.getClientId()).get();
         InsurancePolicy insurancePolicy= Converter.policyEntity(policyDTO);
         Claim claim=new Claim();

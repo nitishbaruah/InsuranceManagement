@@ -51,13 +51,23 @@ public class ClaimController {
 
     @PutMapping("/claims")
     public ResponseEntity<String> updateClientInfo(@RequestBody ClaimDTO claimDTO){
-        String response=claimService.update(claimDTO);
-        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
+        try{
+            String response=claimService.update(claimDTO);
+            return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
+        } catch (Exception e){
+            return new ResponseEntity<>("Error!!",HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @DeleteMapping("/claims/{id}")
     public ResponseEntity<String> deleteClient(@PathVariable int id){
-        String response=claimService.deleteClaim(id);
-        return new ResponseEntity<>(response,HttpStatus.FOUND);
+
+        try{
+            String response=claimService.deleteClaim(id);
+            return new ResponseEntity<>(response,HttpStatus.FOUND);
+        } catch (Exception e){
+            return new ResponseEntity<>("Error!!",HttpStatus.BAD_REQUEST);
+        }
     }
 }

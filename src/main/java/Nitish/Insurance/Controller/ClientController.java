@@ -38,6 +38,7 @@ public class ClientController {
         } */
         List<ClientInfoDTO> clientList=clientService.getAllClient();
         return new ResponseEntity<>(clientList,HttpStatus.FOUND);
+
     }
 
     @GetMapping("/clients/{id}")
@@ -48,14 +49,23 @@ public class ClientController {
 
     @PutMapping("/clients/{id}")
     public ResponseEntity<String> updateClientInfo(@PathVariable int id,@RequestBody ClientDTO clientDTO){
-        String response=clientService.updateClientInfo(id,clientDTO);
-        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
+        try{
+            String response=clientService.updateClientInfo(id,clientDTO);
+            return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
+        } catch (Exception e){
+            return new ResponseEntity<>("Error!!",HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping("/clients/{id}")
     public ResponseEntity<String> deleteClient(@PathVariable int id){
-        String response=clientService.deleteClient(id);
-        return new ResponseEntity<>(response,HttpStatus.FOUND);
+
+        try{
+            String response=clientService.deleteClient(id);
+            return new ResponseEntity<>(response,HttpStatus.FOUND);
+        } catch (Exception e){
+            return new ResponseEntity<>("Error!!",HttpStatus.BAD_REQUEST);
+        }
     }
 }
 

@@ -1,7 +1,14 @@
 > # Insurance Management(backend)
 Clone project and configure Application properties. <br>
-Setup MySQL and configuration in spring.
-
+Setup MySQL and configuration in spring. <br>
+## Entity
+Client: (Int)ID, (String)Name, (String)Contact, (Date)dateOfBirth, (String)Address. //Client is connected to insurance policy. <br>
+Insurance Policy: (int) Id, (PolicyType) type, (double)amount, (double)premium, (date)startDate,
+(date)endDate // Policy connected with client and claims. <br>
+claims:(int) id, (String) description, (date) date, (ClaimStatus) claimStatus //connected with insurance policy <br>
+<br>
+(ENUM class) PolicyType:Motor,Health,Life,Travel,Home. <br>
+(ENUM Class) ClaimStatus: NotClaimed,ClaimedButApprovalPending, Approved <br>
 ## Client APIs
 ### Add Client <br>
 POST/ API: http://localhost:9999/api/clients <br>

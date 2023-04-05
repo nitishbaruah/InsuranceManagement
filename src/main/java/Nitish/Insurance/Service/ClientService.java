@@ -16,7 +16,7 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
-    public String addClient(ClientDTO clientDTO){
+    public String addClient(ClientDTO clientDTO) throws Exception{
         Client client= Converter.clientEntity(clientDTO);
         clientRepository.save(client);
         return "Client name:"+client.getName()+"\n"
@@ -24,7 +24,7 @@ public class ClientService {
                 +"Successfully Added";
     }
 
-    public List<ClientInfoDTO> getAllClient(){
+    public List<ClientInfoDTO> getAllClient() {
         List<Client> list= clientRepository.findAll();
         List<ClientInfoDTO> clientList=new ArrayList<>();
         for (Client client:list){
@@ -33,13 +33,13 @@ public class ClientService {
         return clientList;
     }
 
-    public ClientInfoDTO getClientById(int id){
+    public ClientInfoDTO getClientById(int id) {
         ClientInfoDTO client=Converter.clientInfo(clientRepository.findById(id).get());
 
         return client;
     }
 
-    public String updateClientInfo(int id,ClientDTO clientDTO){
+    public String updateClientInfo(int id,ClientDTO clientDTO)throws Exception{
         Client client=clientRepository.findById(id).get();
         if(clientDTO.getName()!=null){
             client.setName(clientDTO.getName());
@@ -56,7 +56,7 @@ public class ClientService {
         clientRepository.save(client);
         return "Successfully Updated";
     }
-    public String deleteClient(int id){
+    public String deleteClient(int id)throws Exception{
         //Client client=clientRepository.findById(id).get();
         clientRepository.deleteById(id);
         return "Successfully deleted";
